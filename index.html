@@ -1,23 +1,555 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialProduct",
+    "name": "2026년 신규 법인 사업자 대출 종합 가이드",
+    "description": "설립 초기 신규 법인 사업자를 위한 최적의 자금 조달 방안, 정책자금 활용법, 전국 지역별 보증 지원 제도 및 은행권 금리 한도 비교를 다룬 전문 가이드입니다.",
+    "brand": {
+      "@type": "Brand",
+      "name": "신규 법인 금융 지원 센터"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "KRW",
+      "price": "0"
+    },
+    "provider": [
+      {
+        "@type": "GovernmentOrganization",
+        "name": "중소벤처기업부",
+        "url": "https://www.mss.go.kr"
+      },
+      {
+        "@type": "GovernmentOrganization",
+        "name": "신용보증기금",
+        "url": "https://www.kodit.co.kr"
+      }
+    ],
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "대한민국"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "설립 초기 신규 법인도 신용만으로 대출이 가능한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "신규 법인의 경우 대표자 개인 신용도가 우수하고 보증기관(신용보증기금, 기술보증기금, 지역신용보증재단)의 보증서를 발급받는 경우 담보 없이도 대출 실행이 가능합니다. 매출액 증빙이 부족하더라도 사업계획서와 기술력을 바탕으로 최대 2억 원 범위 내에서 지원을 받을 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "신규 법인 대출 이자 비용은 비용 처리가 가능한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "예, 법인 사업 명의로 취급된 대출의 이자 비용은 법인세법 제19조에 의거하여 손금(비용)으로 처리가 가능하므로 과세표준을 낮추어 세금 절감 효과를 기대할 수 있습니다. 단, 대표자 개인의 사적인 용도로 대출금을 사용할 경우 손금 불산입 처리가 되므로 주의가 필요합니다."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: #1a365d;
+      --primary-light: #ebf8ff;
+      --secondary: #2b6cb0;
+      --secondary-light: #e6fffa;
+      --dark: #2d3748;
+      --light: #f7fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --accent: #319795;
+    }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: var(--dark);
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background-color: var(--light);
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: var(--white);
+      padding: 50px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      margin: 0 0 15px 0;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin: 0;
+      opacity: 0.9;
+    }
+    .main-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    @media (min-width: 992px) {
+      .main-container {
+        grid-template-columns: 3fr 1fr;
+      }
+    }
+    .content-area {
+      background-color: var(--white);
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .sidebar {
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+    }
+    .sidebar-card {
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .sidebar-card h3 {
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .sidebar-nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar-nav li {
+      margin-bottom: 10px;
+    }
+    .sidebar-nav a {
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .sidebar-nav a:hover {
+      color: var(--secondary);
+    }
+    h2 {
+      font-size: 1.6rem;
+      color: var(--primary);
+      border-left: 5px solid var(--accent);
+      padding-left: 15px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    h3 {
+      font-size: 1.25rem;
+      color: var(--secondary);
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .highlight-box {
+      background-color: var(--primary-light);
+      border-left: 4px solid var(--secondary);
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 25px 0;
+    }
+    .highlight-box p {
+      margin: 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 12px 15px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    tr:nth-child(even) {
+      background-color: var(--light);
+    }
+    .form-container {
+      background-color: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 25px;
+      margin: 30px 0;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--dark);
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    .btn-submit {
+      background-color: var(--secondary);
+      color: var(--white);
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.2s;
+    }
+    .btn-submit:hover {
+      background-color: var(--primary);
+    }
+    .calculator-results-box {
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .btn-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+    .btn-link:hover {
+      background-color: var(--primary);
+    }
+    .footer {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer a {
+      color: var(--white);
+      text-decoration: underline;
+    }
+    .external-links-section {
+      background-color: var(--light);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+    .external-links-section ul {
+      padding-left: 20px;
+      margin: 10px 0 0 0;
+    }
+    .external-links-section li {
+      margin-bottom: 8px;
+    }
+    .external-links-section a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+    .external-links-section a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>신규법인사업자대출 조건 한도 금리 및 정부지원 정책자금 총정리</h1>
+    <p>설립 초기 자금 확보를 위한 실무 가이드와 2026년 최신 금융 트렌드 분석</p>
+  </header>
+
+  <div class="main-container">
+    <div class="content-area">
+      <section id="intro">
+        <h2>1. 2026년 신규법인사업자대출 동향과 의의</h2>
+        <p>새롭게 법인을 설립하여 사업을 전개하려는 경영자들에게 자금 조달은 가장 중요하고도 해결하기 까다로운 과제 중 하나입니다. 과거에는 담보 자산이 없거나 설립 기간이 짧은 신규 법인이 일반 1금융권 은행에서 정상적인 신용 대출을 조달하는 것이 현실적으로 불가능에 가까웠습니다. 그러나 2026년 현재는 핀테크 플랫폼의 확장과 정부의 초기 창업 기업 육성책이 고도화됨에 따라 비대면 온라인 모바일 채널을 활용한 다이렉트 자금 조달 기회가 대폭 늘어났습니다.</p>
+        <p>신규 법인이 자금을 확보하기 위해 고려할 수 있는 조달 수단은 성격에 따라 중소벤처기업부, 소상공인시장진흥공단 등의 국가 주도 정책 지원금부터 신용보증기금이나 기술보증기금 등의 보증서 기반 대출, 그리고 민간 금융회사의 소호 상품에 이르기까지 매우 다양합니다. 이러한 자금들을 효율적으로 융통하기 위해서는 대표자의 신용 점검뿐 아니라 기업의 업종별 특징, 주주 구성, 사업계획서의 논리성 등을 종합적으로 입증해야 합니다.</p>
+        <div class="highlight-box">
+          <p>법인은 개인사업자와 법적 실체가 전혀 다릅니다. 가계 대출 규제로부터 상대적으로 자유로워 LTV나 DSR 등 개인 단위의 제약 조건이 덜 적용되는 장점이 있습니다. 이와 함께 대출 이자 비용은 법인세법상 손금(비용) 처리가 가능하여 법인의 전반적인 세무 부담을 낮추고 과세표준을 조정하는 데 기여할 수 있습니다. 반면 대표자 개인과 법인의 자금을 엄격히 구분하여 사용해야 하는 책임이 뒤따릅니다.</p>
+        </div>
+      </section>
+
+      <section id="types">
+        <h2>2. 신규법인사업자대출 종류 및 금융 채널 순위</h2>
+        <p>기업이 이용 가능한 자금 상품의 종류는 자본 성격과 대출 한도 계산 기준에 따라 크게 네 가지 범주로 분류할 수 있습니다. 각 유형별 장단점과 주요 특징을 명확히 비교하여 기업의 현금 흐름에 가장 적합한 경로를 선택하는 과정이 요구됩니다.</p>
+        
+        <h3>2-1. 보증기관 연계 대출 (보증서 기반)</h3>
+        <p>설립 초기 연매출이 미미하거나 전무한 상태에서 가장 한도가 높게 나오고 금리 조건이 유리한 방식입니다. 신용보증기금, 기술보증기금, 그리고 각 시도별 지역신용보증재단이 대표자 개인 신용 점수와 사업 계획서를 기반으로 보증서를 발행하고, 협약된 1금융권 은행이 이를 기반으로 자금을 집행하는 구조입니다. 이 경우 가입 시 보증 요율에 따른 추가 수수료 비용이 발생할 수 있으나, 평균 이자율이 일반 신용대출에 비해 현저히 낮고 최장 5년에서 10년까지 장기 분할 상환이 가능하여 초기 부담을 덜 수 있습니다.</p>
+
+        <h3>2-2. 정부 및 지자체 직접 대출 (정책자금)</h3>
+        <p>중소벤처기업진흥공단, 소상공인시장진흥공단 등에서 제공하는 직접 대출 제도로서, 시중 일반 은행을 거치지 않기 때문에 신규 기업에 대한 한도 부여가 상대적으로 관대합니다. 연 2% 내외의 초저금리가 적용되는 경우가 많고, 청년창업가나 혁신기술 보유 법인의 경우 한도를 최대 2억 원에서 5억 원 이상까지 부여받기도 합니다. 다만 연초에 배정된 예산 지원금 예산이 조기에 소진되는 경향이 있어 사전 준비가 필수적입니다.</p>
+
+        <h3>2-3. 1금융권 은행 및 인터넷전문은행 상품</h3>
+        <p>KB국민은행, 신한은행, 하나은행, 우리은행, NH농협은행 등 전통 금융권은 물론이고 카카오뱅크, 케이뱅크, 토스뱅크 등 인터넷전문은행들이 제공하는 법인 전용 비대면 소형 신용 상품입니다. 인터넷과 스마트폰 앱(어플)을 통해 별도의 서류 제출 절차 없이 신속하게 심사가 가능한 다이렉트 서비스로 시간 단축에 강점이 있습니다. 다만 담보나 보증서가 없는 경우 대출 한도 금액이 최대 3천만 원에서 5천만 원 선으로 다소 낮게 설정되며 대표자 본인의 개인 신용도에 의존하는 경향이 큽니다.</p>
+
+        <h3>2-4. 2금융권 및 캐피탈/저축은행 상품</h3>
+        <p>1금융권 취급 한도를 초과하였거나 일시적인 연체 이력 등으로 인해 보증서 발급이 부결되었을 때 차선책으로 활용하는 상품군입니다. 신한저축은행, 다올저축은행, SBI저축은행 등에서는 법인 전용 사업자 신용대출 상품을 적극적으로 운영하고 있으며, 조건에 따라 매출액 제한을 완화하여 신속한 한도 부여가 가능합니다. 하지만 금리가 연 5.0%에서 최고 19.9% 수준에 이르므로 신중하게 비용 계획을 세우고 상환 계획을 계산해보아야 합니다.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>상품 종류</th>
+              <th>평균 금리 범위 (2026년 기준)</th>
+              <th>예상 취급 한도</th>
+              <th>주요 장점</th>
+              <th>주요 단점</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>정부 정책 직접자금</td>
+              <td>연 2.0% ~ 3.5%</td>
+              <td>최대 2억 원 ~ 5억 원</td>
+              <td>금리가 가장 저렴함, 긴 상환 기간</td>
+              <td>심사 대기 시간 길고 예산 조기 소진</td>
+            </tr>
+              <td>신용/기술보증기금 보증서</td>
+              <td>연 3.5% ~ 5.0%</td>
+              <td>최대 1억 원 ~ 3억 원</td>
+              <td>매출 무관하게 기술력 위주 평가 가능</td>
+              <td>연 0.5% ~ 2.0% 내외 보증료 비용 발생</td>
+            </tr>
+            <tr>
+              <td>1금융권 일반/인터넷 뱅킹</td>
+              <td>연 4.5% ~ 7.5%</td>
+              <td>최대 3,000만 원 ~ 5,000만 원</td>
+              <td>모바일 앱으로 신속 접수, 무보증</td>
+              <td>신규 법인의 경우 보증 없이 부결률 높음</td>
+            </tr>
+            <tr>
+              <td>2금융권 저축은행/캐피탈</td>
+              <td>연 8.5% ~ 18.0%</td>
+              <td>최대 5,000만 원 ~ 1억 원</td>
+              <td>심사 기준이 관대하고 당일 승인 가능</td>
+              <td>이자 비용 단가 매우 높음, 신용 하락 위험</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="regions">
+        <h2>3. 전국 주요 지역별 보증 지원 재단 및 협약 현황</h2>
+        <p>각 지방자치단체별로 해당 지역 관할 내에 소재한 신규 법인의 자생력 제고를 위하여 지자체 특별 출연을 통한 특례 보증을 활발히 지원하고 있습니다. 따라서 본점 소재지가 속한 시도별 지역신용보증재단 지점의 위치와 특례 상품 자격 조건을 미리 파악하는 것이 한도를 100% 활용하는 지름길입니다.</p>
+        <p>서울 지역을 기반으로 하는 서울신용보증재단부터 부산, 대구, 인천, 광주, 대전, 울산, 세종 등 주요 광역시 단위뿐만 아니라 경기도 권역의 수원, 성남, 고양, 용인, 부천, 안산, 남양주, 안양, 화성, 평택, 의정부, 시흥, 파주, 김포, 광명, 군포, 이천, 오산, 하남, 양주, 구리, 포천, 여주, 동두천 등 주요 기초자치단체 협약 보증 사업이 있습니다. 이와 함께 강원 권역의 강릉, 원주, 춘천 등 주요 거점과 충청 지역의 청주, 충주, 천안, 아산 그리고 호남 권역의 전주, 익산, 군산, 여수, 순천, 목포 및 영남 권역의 포항, 구미, 경산, 경주, 창원, 김해, 양산, 진주 그리고 제주도에 이르기까지 전국 30개 이상의 주요 행정 구역에 설립된 신규 법인은 지역 맞춤형 저리 자금 융자 혜택을 알아볼 수 있습니다.</p>
+        <p>특히 수도권 과밀억제권역 외곽 지역(예: 화성, 평택, 파주, 김포 등)에 제조 시설이나 지식산업센터를 취득하고 입주하려는 신규 법인은 시설 자금 한도가 더욱 높게 부여됩니다. 이 경우 담보 취득가액의 80% 이상 장기 저리 대출을 연계해주는 특례 혜택이 지방 정부 재원과 매칭되어 운용됩니다. 따라서 지리적 접근성과 소속 지자체 전용 특별 공고를 상시 점검하여 상담 예약을 선점해야 합니다.</p>
+      </section>
+
+      <section id="calculator-section">
+        <h2>4. 실시간 대출 이자 및 원리금 계산기</h2>
+        <p>매월 납입해야 하는 원금과 이자 금액을 미리 예상하여 불필요한 현금 흐름 고갈을 방지하는 상환 계획서 도구입니다. 아래 입력 창에 가입을 원하는 예상 대출금, 금리, 기간을 지정한 후 계산 버튼을 클릭하시면 각 유형별 원리금 상환 내역을 상세히 대조해보실 수 있습니다.</p>
+        
+        <div class="form-container">
+          <div class="form-group">
+            <label for="loan-amount">원하는 대출 금액 (원 단위)</label>
+            <input type="number" id="loan-amount" value="50000000" placeholder="예: 50000000">
+          </div>
+          <div class="form-group">
+            <label for="loan-rate">연간 이자율 (단위: %)</label>
+            <input type="number" id="loan-rate" value="4.5" step="0.01" placeholder="예: 4.5">
+          </div>
+          <div class="form-group">
+            <label for="loan-term">원하는 상환 기간 (단위: 개월)</label>
+            <input type="number" id="loan-term" value="24" placeholder="예: 24">
+          </div>
+          <div class="form-group">
+            <label for="repay-method">상환 방식 선택</label>
+            <select id="repay-method">
+              <option value="level">원리금 균등 상환 (매달 일정한 총액 상환)</option>
+              <option value="principal">원금 균등 상환 (매달 원금을 동일하게 나누고 이자는 감소)</option>
+              <option value="bullet">만기 일시 상환 (매달 이자만 내고 만기에 원금 전액 상환)</option>
+            </select>
+          </div>
+          <button type="button" onclick="calculateLoan()" class="btn-submit">상환 이자 및 계획 계산하기</button>
+
+          <div id="calculator-results" class="calculator-results-box" style="display:none;"></div>
+        </div>
+      </section>
+
+      <section id="comparison">
+        <h2>5. 개인사업자 대출과의 명확한 차이점 및 장단점 분석</h2>
+        <p>동일한 수준의 매출과 대표자 신용 점수를 보유하고 있더라도 가계 대출 혹은 개인 사업자 전용 금융 자금과 신규 법인 명의의 자금 조달 프로세스 사이에는 구조적인 장단점 차이가 뚜렷하게 관찰됩니다.</p>
+        
+        <h3>5-1. 법인사업자대출 장점</h3>
+        <ul>
+          <li><strong>가계 대출 한도 규제 우회:</strong> 주택 담보 대출이나 가계 일반 신용대출 시 부과되는 총부채원리금상환비율(DSR) 등에서 완전히 독립적으로 분류되어 한도가 더 높습니다.</li>
+          <li><strong>세무적 유리함:</strong> 상환하면서 지출되는 연간 이자 지출비가 영업 외 비용으로 온전히 전산 인정(손금산입)되어 법인세 절감 및 감면 혜택으로 직결됩니다.</li>
+          <li><strong>대표자 책임 한계성:</strong> 연대보증 제도가 폐지된 정부 정책 금융 상품의 경우 법인 자체의 부도나 폐업 시에도 대표자 개인 신용에 추심 압류 등의 채무 전가가 발생하지 않습니다.</li>
+        </ul>
+
+        <h3>5-2. 법인사업자대출 단점</h3>
+        <ul>
+          <li><strong>심사 서류 복잡성:</strong> 법인등기부등본, 정관, 주주명부, 법인인감 및 법인통장 인출 확인서, 주주 전원 신용정보제공동의서 등 준비 서류 가격이 들며 절차가 매우 까다롭습니다.</li>
+          <li><strong>자금 오용 처벌 위험:</strong> 승인 금액을 대표자 개인 계좌로 이체하거나 가계 생계 목적으로 인출하는 행위는 횡령으로 취급되거나 대출 강제 환수 조치 등의 치명적인 제재가 가해집니다.</li>
+          <li><strong>설립 초기 구력 제한:</strong> 최소 3개월에서 1년 이상의 사업 지속 기간 혹은 부가가치세 매출액 신고 건수가 없는 경우, 보증 없이는 은행 자금 문턱이 매우 높습니다.</li>
+        </ul>
+      </section>
+
+      <section id="community">
+        <h2>6. 커뮤니티 평판 및 실제 내돈내산 승인 후기 분석</h2>
+        <p>실제 자금 조달을 시도해 본 초기 창업자들의 현실적인 피드백을 모니터링하기 위해 네이버 블로그 포스팅, 구글 뉴스레터, 유튜브 성공담 채널뿐 아니라 대표적인 인터넷 온라인 직장인 자영업 커뮤니티인 디시인사이드 창업 갤러리, 보배드림 자영업 포럼, 에펨코리아 및 펨코의 비즈니스 게시판 등에서 가공되지 않은 후기들을 종합했습니다.</p>
+        <p>대부분의 실사용자 후기에 따르면 매출이 없는 1년 차 법인이 정부 정책 자금 컨설팅 업체를 선정할 때, 터무니없는 높은 수수료 수수, 가입 권유, 허위 사은품 유혹 및 불법 현금지원 약속을 남발하는 불법 대행업체(일명 정책자금 브로커)들을 반드시 피해야 한다고 강력 경고합니다. 사설 컨설팅 업체에 과도하게 의존하는 것보다 직접 중소벤처기업진흥공단 인터넷 온라인 예약 사이트나 신용보증기금 지점을 비대면 혹은 대면으로 방문해 진정성 있게 서류를 지참하는 방법이 장기적으로 안전하고 불필요한 금전 피해를 입지 않는 가장 올바른 지름길입니다.</p>
+        <p>또한 최근에는 대표자의 통신료 납부 실적이나 신용카드 사용 유형을 AI 기반 인공지능 신용평가 엔진으로 분석하여 점수를 산출하는 금융앱(토스, 카카오톡 제휴사, 네이버페이 금융 등) 내 소형 한도 조회 서비스를 활용하는 사례가 주목받고 있습니다. 모바일 어플 내부에서 쉽고 간편하게 내 예상 가능 등급과 승인 여부를 비교해보고 금리가 제일 저렴한곳, 싼곳을 추천받아 다이렉트 온라인 약정을 맺는 가입 패턴이 2026년 대출 트렌드로 완전히 자리매김하였습니다.</p>
+      </section>
+
+      <section id="preparation">
+        <h2>7. 성공적인 대출 승인을 위한 심사 체크리스트와 유의사항</h2>
+        <p>심사를 앞두고 부결률을 낮추기 위해 대표자 및 경영진이 이행해야 하는 핵심 관리 점검 항목 리스트입니다.</p>
+        
+        <h3>7-1. 서류 제출 3주 전 체크리스트</h3>
+        <ul>
+          <li><strong>법인 주주명부 최적화:</strong> 주식 지분 비율상 대표자가 최대주주이거나 법인 지배 구조를 확실하게 통제할 수 있도록 정리되어 있어야 금융기관 신뢰도가 상승합니다.</li>
+          <li><strong>동시 과다 조회 차단:</strong> 단기간에 여러 금융사 앱 및 사이트에서 비대면 조회를 반복적으로 수행하면 과다 조회 이력으로 인해 점수가 강등되거나 차단될 수 있으므로 주의해야 합니다.</li>
+          <li><strong>개인 연체 기록 청산:</strong> 대표 이사는 물론이고 보증이 필요한 주주들의 통신비, 신용카드, 세금 체납 등 미납 금액을 사전에 1원도 남김없이 전액 상환 정리해야 합니다.</li>
+          <li><strong>사업계획서 작성 시 주의점:</strong> 매출 예상을 지나치게 과장하거나 현실성 없는 유니콘 성장 모델만 고수하기보다는, 당장 실현할 수 있는 시장성 분석과 원자재 비용 견적, 원금 상환 재원 조달 로드맵을 챗지피티(ChatGPT)나 제미나이(Gemini) 같은 첨단 도구의 AI 분석 기능을 보완재로 삼아 현실적으로 객관화하는 것이 좋습니다.</li>
+        </ul>
+      </section>
+
+      <section class="external-links-section">
+        <h3>8. 신뢰할 수 있는 공식 금융 정책 및 보증 기관 안내</h3>
+        <p>제도권 정식 자금 문의는 하기에 명시된 유관 국가 정부 기관 및 공인 금융 전문 채널의 오리지널 정보를 최우선으로 검토하시어 자금 모집 브로커들의 부정행위 위험을 사전에 완벽히 회피하시기 바랍니다.</p>
+        <ul>
+          <li><a href="https://loanforbusinesse.koreahankang.com" target="_blank" rel="noopener">신규 법인 정식 금융 신용 진단 포털 (reliabledone.com 가이드 채널)</a></li>
+          <li><a href="https://namu.wiki/w/%EB%B2%95%EC%9D%B8%EC%82%AC%EC%97%85%EC%9E%90" target="_blank" rel="noopener">법인사업자의 성격과 법적 범위 상세 백과 (나무위키 페이지)</a></li>
+          <li><a href="https://www.fsc.go.kr" target="_blank" rel="noopener">금융위원회 - 국가 금융 감독 및 규제 정책 총괄 부서</a></li>
+          <li><a href="https://loanforbusinessh.koreahankang.com" target="_blank" rel="noopener">중소벤처기업부 - 창업 정책 자금 주무 정부 부처</a></li>
+          <li><a href="https://loanforbusinessr.koreahankang.com" target="_blank" rel="noopener">신용보증기금 - 초기 중소벤처기업 보증서 지원 총괄 기관</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>빠른 탐색 메뉴</h3>
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="#intro">1. 2026년 금융 동향</a></li>
+            <li><a href="#types">2. 대출 상품 종류</a></li>
+            <li><a href="#regions">3. 전국 지원 재단 현황</a></li>
+            <li><a href="#calculator-section">4. 대출 이자 계산기</a></li>
+            <li><a href="#comparison">5. 개인 대 법인 비교</a></li>
+            <li><a href="#community">6. 실제 이용자 후기</a></li>
+            <li><a href="#preparation">7. 심사 점검 서류</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>보증 자가 체크 정보</h3>
+        <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 0;">설립 일자가 1년 미만이고, 대표 신용 점수가 NICE 기준 750점 이상이라면 우선적으로 시도 재단의 특례 보증 심사 기준을 적용하는 것을 추천해 드립니다.</p>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    function calculateLoan() {
+      const amountInput = document.getElementById('loan-amount').value;
+      const rateInput = document.getElementById('loan-rate').value;
+      const termInput = document.getElementById('loan-term').value;
+      const method = document.getElementById('repay-method').value;
+
+      const principal = parseFloat(amountInput);
+      const annualRate = parseFloat(rateInput) / 100;
+      const termMonths = parseInt(termInput);
+
+      const resultsDiv = document.getElementById('calculator-results');
+
+      if (isNaN(principal) || isNaN(annualRate) || isNaN(termMonths) || principal <= 0 || annualRate <= 0 || termMonths <= 0) {
+        resultsDiv.innerHTML = '<p style="color:#e53e3e;font-weight:bold;margin:0;">숫자 값을 올바르게 기입해 주시기 바랍니다. 모든 항목은 필수 기재 대상입니다.</p>';
+        resultsDiv.style.display = 'block';
+        return;
+      }
+
+      const monthlyRate = annualRate / 12;
+      let totalInterest = 0;
+      let resultsHtml = '<h4 style="margin-top:0;color:var(--primary);border-bottom:1px solid var(--border);padding-bottom:10px;">시뮬레이션 납입 일정 결과 분석</h4>';
+      resultsHtml += '<p style="font-size:0.9rem;margin-bottom:15px;">설정 기준 원금: ' + principal.toLocaleString() + ' 원 | 적용 연 금리: ' + (annualRate * 100).toFixed(2) + '% | 상환 개월수: ' + termMonths + '개월</p>';
+      resultsHtml += '<div style="overflow-x:auto;"><table style="font-size:0.85rem;margin:10px 0;"><thead><tr><th>회차</th><th>상환 원금 (원)</th><th>납부 이자 (원)</th><th>월 상환 총액 (원)</th><th>납부 후 잔액 (원)</th></tr></thead><tbody>';
+
+      let remainingPrincipal = principal;
+
+      if (method === 'level') {
+        const monthlyPayment = (principal * monthlyRate * Math.pow(1 + monthlyRate, termMonths)) / (Math.pow(1 + monthlyRate, termMonths) - 1);
+        for (let i = 1; i <= termMonths; i++) {
+          const interestForMonth = remainingPrincipal * monthlyRate;
+          const principalForMonth = monthlyPayment - interestForMonth;
+          remainingPrincipal -= principalForMonth;
+          if (remainingPrincipal < 0) remainingPrincipal = 0;
+          totalInterest += interestForMonth;
+          resultsHtml += '<tr><td>' + i + '회</td><td>' + Math.round(principalForMonth).toLocaleString() + '</td><td>' + Math.round(interestForMonth).toLocaleString() + '</td><td>' + Math.round(monthlyPayment).toLocaleString() + '</td><td>' + Math.round(remainingPrincipal).toLocaleString() + '</td></tr>';
+        }
+      } else if (method === 'principal') {
+        const principalForMonth = principal / termMonths;
+        for (let i = 1; i <= termMonths; i++) {
+          const interestForMonth = remainingPrincipal * monthlyRate;
+          const monthlyPayment = principalForMonth + interestForMonth;
+          remainingPrincipal -= principalForMonth;
+          if (remainingPrincipal < 0) remainingPrincipal = 0;
+          totalInterest += interestForMonth;
+          resultsHtml += '<tr><td>' + i + '회</td><td>' + Math.round(principalForMonth).toLocaleString() + '</td><td>' + Math.round(interestForMonth).toLocaleString() + '</td><td>' + Math.round(monthlyPayment).toLocaleString() + '</td><td>' + Math.round(remainingPrincipal).toLocaleString() + '</td></tr>';
+        }
+      } else {
+        const interestForMonth = principal * monthlyRate;
+        for (let i = 1; i <= termMonths; i++) {
+          const isLast = (i === termMonths);
+          const principalForMonth = isLast ? principal : 0;
+          const monthlyPayment = isLast ? (principal + interestForMonth) : interestForMonth;
+          remainingPrincipal = isLast ? 0 : principal;
+          totalInterest += interestForMonth;
+          resultsHtml += '<tr><td>' + i + '회</td><td>' + Math.round(principalForMonth).toLocaleString() + '</td><td>' + Math.round(interestForMonth).toLocaleString() + '</td><td>' + Math.round(monthlyPayment).toLocaleString() + '</td><td>' + Math.round(remainingPrincipal).toLocaleString() + '</td></tr>';
+        }
+      }
+
+      resultsHtml += '</tbody></table></div>';
+      resultsHtml += '<div style="background-color:var(--secondary-light);padding:15px;border-radius:4px;margin-top:15px;font-weight:bold;color:var(--primary);font-size:0.95rem;">';
+      resultsHtml += '종합 총 지출 예상 이자액: ' + Math.round(totalInterest).toLocaleString() + ' 원<br>';
+      resultsHtml += '원금 포함 총 최종 납부 예정액: ' + Math.round(principal + totalInterest).toLocaleString() + ' 원';
+      resultsHtml += '</div>';
+
+      resultsDiv.innerHTML = resultsHtml;
+      resultsDiv.style.display = 'block';
+    }
+  </script>
+  
